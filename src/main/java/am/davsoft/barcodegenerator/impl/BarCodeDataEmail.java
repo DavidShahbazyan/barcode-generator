@@ -9,13 +9,23 @@ import am.davsoft.barcodegenerator.api.BarCodeData;
 public class BarCodeDataEmail implements BarCodeData {
     private String email;
 
-    public BarCodeDataEmail setEmail(String email) {
+    private BarCodeDataEmail() { }
+
+    public static BarCodeDataEmail newInstance() {
+        return new BarCodeDataEmail();
+    }
+
+    public BarCodeDataEmail withEmail(String email) {
         this.email = email;
         return this;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         return String.format("mailto:%s", email);
     }
 }

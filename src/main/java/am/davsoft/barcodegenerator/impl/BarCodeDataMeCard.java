@@ -15,43 +15,77 @@ public class BarCodeDataMeCard implements BarCodeData {
     private String address;
     private String note;
 
-    public BarCodeDataMeCard setName(String name) {
+    private BarCodeDataMeCard() { }
+
+    public static BarCodeDataMeCard newInstance() {
+        return new BarCodeDataMeCard();
+    }
+
+    public BarCodeDataMeCard withName(String name) {
         this.name = name;
         return this;
     }
 
-    public BarCodeDataMeCard setCompany(String company) {
+    public BarCodeDataMeCard withCompany(String company) {
         this.company = company;
         return this;
     }
 
-    public BarCodeDataMeCard setPhone(String phone) {
+    public BarCodeDataMeCard withPhone(String phone) {
         this.phone = phone;
         return this;
     }
 
-    public BarCodeDataMeCard setWebsite(String website) {
+    public BarCodeDataMeCard withWebsite(String website) {
         this.website = website;
         return this;
     }
 
-    public BarCodeDataMeCard setEmail(String email) {
+    public BarCodeDataMeCard withEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public BarCodeDataMeCard setAddress(String address) {
+    public BarCodeDataMeCard withAddress(String address) {
         this.address = address;
         return this;
     }
 
-    public BarCodeDataMeCard setNote(String note) {
+    public BarCodeDataMeCard withNote(String note) {
         this.note = note;
         return this;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         return String.format("MECARD:N:%s;ORG:%s;TEL:%s;URL:%s;EMAIL:%s;ADR:%s;NOTE:%s;;", name, company, phone, website, email, address, note);
     }
 }

@@ -22,53 +22,91 @@ public class BarCodeDataVCard implements BarCodeData {
     private String address;
     private String note;
 
-    public BarCodeDataVCard setContactName(ContactName contactName) {
+    private BarCodeDataVCard() { }
+
+    public static BarCodeDataVCard newInstance() {
+        return new BarCodeDataVCard();
+    }
+
+    public BarCodeDataVCard withContactName(ContactName contactName) {
         this.contactName = contactName;
         return this;
     }
 
-    public BarCodeDataVCard setCompany(String company) {
+    public BarCodeDataVCard withCompany(String company) {
         this.company = company;
         return this;
     }
 
-    public BarCodeDataVCard setTitle(String title) {
+    public BarCodeDataVCard withTitle(String title) {
         this.title = title;
         return this;
     }
 
-    public BarCodeDataVCard addPhoneNumber(PhoneNumber phoneNumber) {
+    public BarCodeDataVCard withPhoneNumber(PhoneNumber phoneNumber) {
         this.phoneNumbers.add(phoneNumber);
         return this;
     }
 
-    public BarCodeDataVCard addAllPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+    public BarCodeDataVCard withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers.addAll(phoneNumbers);
         return this;
     }
 
-    public BarCodeDataVCard setWebsite(String website) {
+    public BarCodeDataVCard withWebsite(String website) {
         this.website = website;
         return this;
     }
 
-    public BarCodeDataVCard setEmail(String email) {
+    public BarCodeDataVCard withEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public BarCodeDataVCard setAddress(String address) {
+    public BarCodeDataVCard withAddress(String address) {
         this.address = address;
         return this;
     }
 
-    public BarCodeDataVCard setNote(String note) {
+    public BarCodeDataVCard withNote(String note) {
         this.note = note;
         return this;
     }
 
+    public ContactName getContactName() {
+        return contactName;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         StringBuilder builder = new StringBuilder("BEGIN:VCARD").append('\n').append("VERSION:3.0");
         if (contactName != null) {
             builder.append('\n').append("N:").append(contactName);

@@ -11,23 +11,41 @@ public class BarCodeDataGeoLocation implements BarCodeData {
     private String longitude;
     private String query;
 
-    public BarCodeDataGeoLocation setLatitude(String latitude) {
+    private BarCodeDataGeoLocation() { }
+
+    public static BarCodeDataGeoLocation newInstance() {
+        return new BarCodeDataGeoLocation();
+    }
+
+    public BarCodeDataGeoLocation withLatitude(String latitude) {
         this.latitude = latitude;
         return this;
     }
 
-    public BarCodeDataGeoLocation setLongitude(String longitude) {
+    public BarCodeDataGeoLocation withLongitude(String longitude) {
         this.longitude = longitude;
         return this;
     }
 
-    public BarCodeDataGeoLocation setQuery(String query) {
+    public BarCodeDataGeoLocation withQuery(String query) {
         this.query = query;
         return this;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         if (query != null && !query.isEmpty()) {
             return String.format("geo:%s,%s?q=%s", latitude, longitude, query);
         } else {

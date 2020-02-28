@@ -5,5 +5,5 @@ package am.davsoft.barcodegenerator.api;
  * @since Mar 04, 2017
  */
 public interface BarCodeData {
-    String getData();
+    String getDataString();
 }

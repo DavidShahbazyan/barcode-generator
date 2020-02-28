@@ -9,13 +9,23 @@ import am.davsoft.barcodegenerator.api.BarCodeData;
 public class BarCodeDataText implements BarCodeData {
     private String text;
 
-    public BarCodeDataText setText(String text) {
+    private BarCodeDataText() { }
+
+    public static BarCodeDataText newInstance() {
+        return new BarCodeDataText();
+    }
+
+    public BarCodeDataText withText(String text) {
         this.text = text;
         return this;
     }
 
+    public String getText() {
+        return text;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         return text;
     }
 }

@@ -9,13 +9,23 @@ import am.davsoft.barcodegenerator.api.BarCodeData;
 public class BarCodeDataPhoneNumber implements BarCodeData {
     private String phone;
 
-    public BarCodeDataPhoneNumber setPhone(String phone) {
+    private BarCodeDataPhoneNumber() { }
+
+    public static BarCodeDataPhoneNumber newInstance() {
+        return new BarCodeDataPhoneNumber();
+    }
+
+    public BarCodeDataPhoneNumber withPhone(String phone) {
         this.phone = phone;
         return this;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         return String.format("tel:%s", phone);
     }
 }

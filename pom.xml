@@ -6,7 +6,7 @@
 
     <groupId>am.davsoft</groupId>
     <artifactId>barcodegenerator</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -40,20 +40,6 @@
             <url>https://maven.pkg.github.com/DavidShahbazyan/package-repo</url>
         </repository>
     </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2</url>
-            <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>false</enabled></snapshots>
-        </repository>
-        <repository>
-            <id>github</id>
-            <name>GitHub DavidShahbazyan Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/DavidShahbazyan/barcodegenerator</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>

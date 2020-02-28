@@ -13,13 +13,23 @@ public class BarCodeDataGooglePlay implements BarCodeData {
     private static final Pattern GOOGLE_PLAY_ID_PATTERN = Pattern.compile(".+\\bdetails\\?id=([^&]+)");
     private String packageName;
 
-    public BarCodeDataGooglePlay setPackageName(String packageName) {
+    private BarCodeDataGooglePlay() { }
+
+    public static BarCodeDataGooglePlay newInstance() {
+        return new BarCodeDataGooglePlay();
+    }
+
+    public BarCodeDataGooglePlay withPackageName(String packageName) {
         this.packageName = packageName;
         return this;
     }
 
+    public String getPackageName() {
+        return packageName;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         Matcher matcher = GOOGLE_PLAY_ID_PATTERN.matcher(packageName);
         if (matcher.find()) {
             return "market://details?id=" + packageName;

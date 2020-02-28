@@ -19,38 +19,68 @@ public class BarCodeDataEvent implements BarCodeData {
     private String description;
     private boolean allDayEvent;
 
-    public BarCodeDataEvent setTitle(String title) {
+    private BarCodeDataEvent() { }
+
+    public static BarCodeDataEvent newInstance() {
+        return new BarCodeDataEvent();
+    }
+
+    public BarCodeDataEvent withTitle(String title) {
         this.title = title;
         return this;
     }
 
-    public BarCodeDataEvent setStartDate(LocalDateTime startDate) {
+    public BarCodeDataEvent withStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public BarCodeDataEvent setEndDate(LocalDateTime endDate) {
+    public BarCodeDataEvent withEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    public BarCodeDataEvent setLocation(String location) {
+    public BarCodeDataEvent withLocation(String location) {
         this.location = location;
         return this;
     }
 
-    public BarCodeDataEvent setDescription(String description) {
+    public BarCodeDataEvent withDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public BarCodeDataEvent setAllDayEvent(boolean allDayEvent) {
+    public BarCodeDataEvent withAllDayEvent(boolean allDayEvent) {
         this.allDayEvent = allDayEvent;
         return this;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isAllDayEvent() {
+        return allDayEvent;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         StringBuilder builder = new StringBuilder("BEGIN:VEVENT").append(System.lineSeparator());
         builder.append("SUMMARY:").append(title).append(System.lineSeparator());
         if (allDayEvent) {

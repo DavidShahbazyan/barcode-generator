@@ -13,12 +13,18 @@ public class BarCodeDataWiFiNetwork implements BarCodeData {
     private WiFiEncryptionType type;
     private boolean hidden;
 
-    public BarCodeDataWiFiNetwork setSsid(String ssid) {
+    private BarCodeDataWiFiNetwork() { }
+
+    public static BarCodeDataWiFiNetwork newInstance() {
+        return new BarCodeDataWiFiNetwork();
+    }
+
+    public BarCodeDataWiFiNetwork withSsid(String ssid) {
         this.ssid = ssid;
         return this;
     }
 
-    public BarCodeDataWiFiNetwork setPass(String pass) {
+    public BarCodeDataWiFiNetwork withPass(String pass) {
         this.pass = pass;
         return this;
     }
@@ -27,18 +33,34 @@ public class BarCodeDataWiFiNetwork implements BarCodeData {
      * @param type The security type [WPA|WEP|NONE]
      * @return
      */
-    public BarCodeDataWiFiNetwork setType(WiFiEncryptionType type) {
+    public BarCodeDataWiFiNetwork withType(WiFiEncryptionType type) {
         this.type = type;
         return this;
     }
 
-    public BarCodeDataWiFiNetwork setHidden(boolean hidden) {
+    public BarCodeDataWiFiNetwork withHidden(boolean hidden) {
         this.hidden = hidden;
         return this;
     }
 
+    public String getSsid() {
+        return ssid;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public WiFiEncryptionType getType() {
+        return type;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
     @Override
-    public String getData() {
+    public String getDataString() {
         StringBuilder builder = new StringBuilder("WIFI:");
         builder.append("S:").append(ssid);
         if (type != null && !type.equals(WiFiEncryptionType.NONE)) {

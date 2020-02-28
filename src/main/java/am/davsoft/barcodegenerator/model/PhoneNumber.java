@@ -6,14 +6,28 @@ public class PhoneNumber {
     private PhoneNumberType type = PhoneNumberType.CELL;
     private String number;
 
-    public PhoneNumber setType(PhoneNumberType type) {
+    private PhoneNumber() { }
+
+    public static PhoneNumber newInstance() {
+        return new PhoneNumber();
+    }
+
+    public PhoneNumber withType(PhoneNumberType type) {
         this.type = type;
         return this;
     }
 
-    public PhoneNumber setNumber(String number) {
+    public PhoneNumber withNumber(String number) {
         this.number = number;
         return this;
+    }
+
+    public PhoneNumberType getType() {
+        return type;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public String toDataString() {

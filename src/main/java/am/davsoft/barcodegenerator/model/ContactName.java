@@ -5,19 +5,37 @@ public class ContactName {
     private String middleName;
     private String lastName;
 
-    public ContactName setFirstName(String firstName) {
+    private ContactName() { }
+
+    public static ContactName newInstance() {
+        return new ContactName();
+    }
+
+    public ContactName withFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public ContactName setMiddleName(String middleName) {
+    public ContactName withMiddleName(String middleName) {
         this.middleName = middleName;
         return this;
     }
 
-    public ContactName setLastName(String lastName) {
+    public ContactName withLastName(String lastName) {
         this.lastName = lastName;
         return this;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     @Override

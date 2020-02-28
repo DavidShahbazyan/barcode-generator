@@ -156,7 +156,7 @@ public class BarCodeGenerator {
         return margin;
     }
 
-    private BitMatrix getBitMatrix(BarCodeData data) throws WriterException {
+    private BitMatrix getBitMatrix(BarCodeData barCodeData) throws WriterException {
         Hashtable<EncodeHintType, Object> hintMap = new Hashtable<>();
         switch (barcodeFormat) {
             case AZTEC:
@@ -169,7 +169,7 @@ public class BarCodeGenerator {
         hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
         hintMap.put(EncodeHintType.MARGIN, this.margin);
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        return multiFormatWriter.encode(data.getData(), this.barcodeFormat, this.width, this.height, hintMap);
+        return multiFormatWriter.encode(barCodeData.getDataString(), this.barcodeFormat, this.width, this.height, hintMap);
     }
 
     public BufferedImage generateImage(BarCodeData data) throws WriterException {
