@@ -12,15 +12,20 @@ import am.davsoft.barcodegenerator.impl.barcodedata.PhoneNumberBarcodeDataImpl;
 public class PhoneNumberBarcodeDataBuilder implements SimpleDataBuilder<PhoneNumberBarcodeData> {
     private String phone;
 
-    public PhoneNumberBarcodeDataBuilder withPhone(String phone) {
-        this.phone = phone;
-        return this;
-    }
-
     @Override
-    public PhoneNumberBarcodeData build() {
+    public PhoneNumberBarcodeData buildData() {
         PhoneNumberBarcodeData data = new PhoneNumberBarcodeDataImpl();
         data.setPhone(this.phone);
         return data;
+    }
+
+    @Override
+    public void reset() {
+        this.phone = null;
+    }
+
+    public PhoneNumberBarcodeDataBuilder withPhone(String phone) {
+        this.phone = phone;
+        return this;
     }
 }

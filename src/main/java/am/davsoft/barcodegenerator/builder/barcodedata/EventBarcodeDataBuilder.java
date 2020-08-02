@@ -21,7 +21,7 @@ public class EventBarcodeDataBuilder implements SimpleDataBuilder<EventBarcodeDa
     private boolean allDayEvent;
 
     @Override
-    public EventBarcodeData build() {
+    public EventBarcodeData buildData() {
         EventBarcodeData data = new EventBarcodeDataImpl();
         data.setTitle(this.title);
         data.setStartDate(this.startDate);
@@ -30,6 +30,16 @@ public class EventBarcodeDataBuilder implements SimpleDataBuilder<EventBarcodeDa
         data.setDescription(this.description);
         data.setAllDayEvent(this.allDayEvent);
         return data;
+    }
+
+    @Override
+    public void reset() {
+        this.title = null;
+        this.startDate = null;
+        this.endDate = null;
+        this.location = null;
+        this.description = null;
+        this.allDayEvent = false;
     }
 
     public EventBarcodeDataBuilder withTitle(String title) {

@@ -9,12 +9,19 @@ public class ContactNameBuilder implements SimpleDataBuilder<ContactName> {
     private String lastName;
 
     @Override
-    public ContactName build() {
+    public ContactName buildData() {
         ContactName contactName = new ContactNameImpl();
         contactName.setFirstName(this.firstName);
         contactName.setMiddleName(this.middleName);
         contactName.setLastName(this.lastName);
         return contactName;
+    }
+
+    @Override
+    public void reset() {
+        this.firstName = null;
+        this.middleName = null;
+        this.lastName = null;
     }
 
     public ContactNameBuilder withFirstName(String firstName) {

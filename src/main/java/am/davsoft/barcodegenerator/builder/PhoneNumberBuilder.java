@@ -10,11 +10,17 @@ public class PhoneNumberBuilder implements SimpleDataBuilder<PhoneNumber> {
     private String number;
 
     @Override
-    public PhoneNumber build() {
+    public PhoneNumber buildData() {
         PhoneNumber phoneNumber = new PhoneNumberImpl();
         phoneNumber.setType(this.type);
         phoneNumber.setNumber(this.number);
         return phoneNumber;
+    }
+
+    @Override
+    public void reset() {
+        this.type = PhoneNumberTypeEnum.CELL;
+        this.number = null;
     }
 
     public PhoneNumberBuilder withType(PhoneNumberType type) {

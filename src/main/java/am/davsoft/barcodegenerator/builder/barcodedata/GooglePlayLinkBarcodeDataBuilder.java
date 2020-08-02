@@ -12,10 +12,15 @@ public class GooglePlayLinkBarcodeDataBuilder implements SimpleDataBuilder<Googl
     private String packageName;
 
     @Override
-    public GooglePlayLinkBarcodeData build() {
+    public GooglePlayLinkBarcodeData buildData() {
         GooglePlayLinkBarcodeData data = new GooglePlayLinkBarcodeDataImpl();
         data.setPackageName(this.packageName);
         return data;
+    }
+
+    @Override
+    public void reset() {
+        this.packageName = null;
     }
 
     public GooglePlayLinkBarcodeDataBuilder withPackageName(String packageName) {

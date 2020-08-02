@@ -13,11 +13,17 @@ public class SMSBarcodeDataBuilder implements SimpleDataBuilder<SMSBarcodeData> 
     private String message;
 
     @Override
-    public SMSBarcodeData build() {
+    public SMSBarcodeData buildData() {
         SMSBarcodeData data = new SMSBarcodeDataImpl();
         data.setPhone(this.phone);
         data.setMessage(this.message);
         return data;
+    }
+
+    @Override
+    public void reset() {
+        this.phone = null;
+        this.message = null;
     }
 
     public SMSBarcodeDataBuilder withPhone(String phone) {

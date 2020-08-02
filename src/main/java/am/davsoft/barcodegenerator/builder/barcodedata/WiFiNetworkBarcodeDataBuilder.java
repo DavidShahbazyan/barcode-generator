@@ -16,13 +16,21 @@ public class WiFiNetworkBarcodeDataBuilder implements SimpleDataBuilder<WiFiNetw
     private boolean hidden;
 
     @Override
-    public WiFiNetworkBarcodeData build() {
+    public WiFiNetworkBarcodeData buildData() {
         WiFiNetworkBarcodeData data = new WiFiNetworkBarcodeDataImpl();
         data.setSsid(this.ssid);
         data.setPass(this.pass);
         data.setEncryptionType(this.encryptionType);
         data.setHidden(this.hidden);
         return data;
+    }
+
+    @Override
+    public void reset() {
+        this.ssid = null;
+        this.pass = null;
+        this.encryptionType = null;
+        this.hidden = false;
     }
 
     public WiFiNetworkBarcodeDataBuilder withSsid(String ssid) {

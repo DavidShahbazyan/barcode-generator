@@ -5,5 +5,13 @@ package am.davsoft.barcodegenerator.builder;
  * @since Mar 04, 2017
  */
 public interface SimpleDataBuilder<T> {
-    T build();
+    default T build() {
+        T data = buildData();
+        reset();
+        return data;
+    }
+
+    T buildData();
+
+    void reset();
 }
