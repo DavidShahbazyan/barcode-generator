@@ -9,6 +9,13 @@ import am.davsoft.barcodegenerator.api.barcodedata.EmailBarcodeData;
 public class EmailBarcodeDataImpl implements EmailBarcodeData {
     private String email;
 
+    public EmailBarcodeDataImpl() {
+    }
+
+    public EmailBarcodeDataImpl(String email) {
+        this.email = email;
+    }
+
     @Override
     public String getDataString() {
         return String.format("mailto:%s", email);

@@ -35,12 +35,14 @@ import java.util.Objects;
  * @since Mar 04, 2017
  */
 public class GoogleGeoLocationBarcodeDataImpl implements GoogleGeoLocationBarcodeData {
-    private String _toString;
-    private final String latitude;
-    private final String longitude;
-    private final String label;
-    private final String query;
-    private final Integer zoomLevel;
+    private String latitude;
+    private String longitude;
+    private String label;
+    private String query;
+    private Integer zoomLevel;
+
+    public GoogleGeoLocationBarcodeDataImpl() {
+    }
 
     public GoogleGeoLocationBarcodeDataImpl(String latitude, String longitude, String label, String query, Integer zoomLevel) {
         this.latitude = Objects.requireNonNull(latitude, "Latitude cannot be empty");
@@ -52,26 +54,24 @@ public class GoogleGeoLocationBarcodeDataImpl implements GoogleGeoLocationBarcod
 
     @Override
     public String getDataString() {
-        if (_toString == null) {
-            boolean isOptionalParamExists = false;
+        boolean isOptionalParamExists = false;
 
-            StringBuilder dataString = new StringBuilder("geo:" + String.join(",", latitude, longitude));
-            if (label != null && !label.isEmpty()) {
-                dataString.append("?q=").append(String.join(",", latitude, longitude)).append("(").append(label).append(")");
-                isOptionalParamExists = true;
-            } else {
-                if (query != null && !query.isEmpty()) {
-                    dataString.append(isOptionalParamExists ? "&" : "?").append("q=").append(query);
-                    isOptionalParamExists = true;
-                }
-            }
-            if (zoomLevel != null) {
-                dataString.append(isOptionalParamExists ? "&" : "?").append("z=").append(zoomLevel);
+        StringBuilder dataString = new StringBuilder("geo:" + String.join(",", latitude, longitude));
+        if (label != null && !label.isEmpty()) {
+            dataString.append("?q=").append(String.join(",", latitude, longitude)).append("(").append(label).append(")");
+            isOptionalParamExists = true;
+        } else {
+            if (query != null && !query.isEmpty()) {
+                dataString.append(isOptionalParamExists ? "&" : "?").append("q=").append(query);
                 isOptionalParamExists = true;
             }
-            _toString = dataString.toString();
         }
-        return _toString;
+        if (zoomLevel != null) {
+            dataString.append(isOptionalParamExists ? "&" : "?").append("z=").append(zoomLevel);
+            isOptionalParamExists = true;
+        }
+
+        return dataString.toString();
     }
 
     @Override
@@ -80,8 +80,18 @@ public class GoogleGeoLocationBarcodeDataImpl implements GoogleGeoLocationBarcod
     }
 
     @Override
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    @Override
     public String getLongitude() {
         return longitude;
+    }
+
+    @Override
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     @Override
@@ -90,12 +100,27 @@ public class GoogleGeoLocationBarcodeDataImpl implements GoogleGeoLocationBarcod
     }
 
     @Override
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    @Override
     public String getQuery() {
         return query;
     }
 
     @Override
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    @Override
     public Integer getZoomLevel() {
         return zoomLevel;
+    }
+
+    @Override
+    public void setZoomLevel(Integer zoomLevel) {
+        this.zoomLevel = zoomLevel;
     }
 }

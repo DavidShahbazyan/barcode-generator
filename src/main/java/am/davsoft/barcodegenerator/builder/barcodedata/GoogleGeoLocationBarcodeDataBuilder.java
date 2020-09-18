@@ -16,17 +16,8 @@ public class GoogleGeoLocationBarcodeDataBuilder implements SimpleDataBuilder<Go
     private Integer zoomLevel;
 
     @Override
-    public GoogleGeoLocationBarcodeData buildData() {
+    public GoogleGeoLocationBarcodeData build() {
         return new GoogleGeoLocationBarcodeDataImpl(this.latitude, this.longitude, this.label, this.query, this.zoomLevel);
-    }
-
-    @Override
-    public void reset() {
-        this.latitude = "0";
-        this.longitude = "0";
-        this.label = null;
-        this.query = null;
-        this.zoomLevel = null;
     }
 
     public GoogleGeoLocationBarcodeDataBuilder withLatitude(String latitude) {

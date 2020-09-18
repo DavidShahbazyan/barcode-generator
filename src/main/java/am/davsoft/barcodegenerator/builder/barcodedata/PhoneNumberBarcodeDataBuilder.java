@@ -13,15 +13,8 @@ public class PhoneNumberBarcodeDataBuilder implements SimpleDataBuilder<PhoneNum
     private String phone;
 
     @Override
-    public PhoneNumberBarcodeData buildData() {
-        PhoneNumberBarcodeData data = new PhoneNumberBarcodeDataImpl();
-        data.setPhone(this.phone);
-        return data;
-    }
-
-    @Override
-    public void reset() {
-        this.phone = null;
+    public PhoneNumberBarcodeData build() {
+        return new PhoneNumberBarcodeDataImpl(this.phone);
     }
 
     public PhoneNumberBarcodeDataBuilder withPhone(String phone) {

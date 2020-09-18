@@ -10,30 +10,43 @@
     <packaging>jar</packaging>
 
     <properties>
+        <jdk.version>11</jdk.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.java.version>11</project.build.java.version>
+<!--        <maven.compiler.source>${jdk.version}</maven.compiler.source>-->
+<!--        <maven.compiler.target>${jdk.version}</maven.compiler.target>-->
+        <maven.compiler.release>${jdk.version}</maven.compiler.release>
+
+<!--        <reflections.version>0.9.12</reflections.version>-->
+        <reflections.version>0.9.13-SNAPSHOT</reflections.version>
+        <zxing.version>3.4.0</zxing.version>
+        <jfreesvg.version>3.4</jfreesvg.version>
+        <testng.version>7.3.0</testng.version>
+
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>0.9.12</version>
+            <version>${reflections.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
-            <version>3.4.0</version>
+            <version>${zxing.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreesvg</artifactId>
-            <version>3.4</version>
+            <version>${jfreesvg.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.1.0</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -42,7 +55,7 @@
         <repository>
             <id>github</id>
             <name>GitHub DavidShahbazyan Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/DavidShahbazyan/package-repo</url>
+            <url>https://maven.pkg.github.com/DavidShahbazyan/barcode-generator</url>
         </repository>
     </distributionManagement>
 
@@ -51,10 +64,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <source>${project.build.java.version}</source>
-                    <target>${project.build.java.version}</target>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
             </plugin>
         </plugins>

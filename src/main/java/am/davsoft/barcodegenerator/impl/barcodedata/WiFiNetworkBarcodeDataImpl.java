@@ -15,6 +15,16 @@ public class WiFiNetworkBarcodeDataImpl implements WiFiNetworkBarcodeData {
     private WiFiEncryptionType encryptionType;
     private boolean hidden;
 
+    public WiFiNetworkBarcodeDataImpl() {
+    }
+
+    public WiFiNetworkBarcodeDataImpl(String ssid, String pass, WiFiEncryptionType encryptionType, boolean hidden) {
+        this.ssid = ssid;
+        this.pass = pass;
+        this.encryptionType = encryptionType;
+        this.hidden = hidden;
+    }
+
     @Override
     public String getDataString() {
         StringBuilder builder = new StringBuilder("WIFI:");

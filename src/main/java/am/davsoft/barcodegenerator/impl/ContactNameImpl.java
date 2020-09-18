@@ -7,6 +7,15 @@ public class ContactNameImpl implements ContactName {
     private String middleName;
     private String lastName;
 
+    public ContactNameImpl() {
+    }
+
+    public ContactNameImpl(String firstName, String middleName, String lastName) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+    }
+
     @Override
     public String getFirstName() {
         return firstName;

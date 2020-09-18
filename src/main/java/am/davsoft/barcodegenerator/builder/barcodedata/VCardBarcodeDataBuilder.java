@@ -26,29 +26,8 @@ public class VCardBarcodeDataBuilder implements SimpleDataBuilder<VCardBarcodeDa
     private String note;
 
     @Override
-    public VCardBarcodeData buildData() {
-        VCardBarcodeData data = new VCardBarcodeDataImpl();
-        data.setContactName(this.contactName);
-        data.setCompany(this.company);
-        data.setTitle(this.title);
-        data.setPhoneNumbers(this.phoneNumbers);
-        data.setWebsite(this.website);
-        data.setEmail(this.email);
-        data.setAddress(this.address);
-        data.setNote(this.note);
-        return data;
-    }
-
-    @Override
-    public void reset() {
-        this.contactName = null;
-        this.company = null;
-        this.title = null;
-        this.phoneNumbers = new LinkedList<>();
-        this.website = null;
-        this.email = null;
-        this.address = null;
-        this.note = null;
+    public VCardBarcodeData build() {
+        return new VCardBarcodeDataImpl(this.contactName, this.company, this.title, this.phoneNumbers, this.website, this.email, this.address, this.note);
     }
 
     public VCardBarcodeDataBuilder withContactName(ContactName contactName) {

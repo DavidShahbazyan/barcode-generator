@@ -12,15 +12,8 @@ public class EmailBarcodeDataBuilder implements SimpleDataBuilder<EmailBarcodeDa
     private String email;
 
     @Override
-    public EmailBarcodeData buildData() {
-        EmailBarcodeData data = new EmailBarcodeDataImpl();
-        data.setEmail(this.email);
-        return data;
-    }
-
-    @Override
-    public void reset() {
-        this.email = null;
+    public EmailBarcodeData build() {
+        return new EmailBarcodeDataImpl(this.email);
     }
 
     public EmailBarcodeDataBuilder withEmail(String email) {

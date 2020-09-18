@@ -7,6 +7,14 @@ public class PhoneNumberImpl implements PhoneNumber {
     private PhoneNumberType type = PhoneNumberTypeEnum.CELL;
     private String number;
 
+    public PhoneNumberImpl() {
+    }
+
+    public PhoneNumberImpl(PhoneNumberType type, String number) {
+        this.type = type;
+        this.number = number;
+    }
+
     @Override
     public PhoneNumberType getType() {
         return type;

@@ -12,15 +12,8 @@ public class URLBarcodeDataBuilder implements SimpleDataBuilder<URLBarcodeData> 
     private String url;
 
     @Override
-    public URLBarcodeData buildData() {
-        URLBarcodeData data = new URLBarcodeDataImpl();
-        data.setUrl(this.url);
-        return data;
-    }
-
-    @Override
-    public void reset() {
-        this.url = null;
+    public URLBarcodeData build() {
+        return new URLBarcodeDataImpl(this.url);
     }
 
     public URLBarcodeDataBuilder withUrl(String url) {

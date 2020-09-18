@@ -12,15 +12,8 @@ public class TextBarcodeDataBuilder implements SimpleDataBuilder<TextBarcodeData
     private String text;
 
     @Override
-    public TextBarcodeData buildData() {
-        TextBarcodeData data = new TextBarcodeDataImpl();
-        data.setText(this.text);
-        return data;
-    }
-
-    @Override
-    public void reset() {
-        this.text = null;
+    public TextBarcodeData build() {
+        return new TextBarcodeDataImpl(this.text);
     }
 
     public TextBarcodeDataBuilder withText(String text) {

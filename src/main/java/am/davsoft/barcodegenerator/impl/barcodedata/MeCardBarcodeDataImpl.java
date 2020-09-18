@@ -16,6 +16,19 @@ public class MeCardBarcodeDataImpl implements MeCardBarcodeData {
     private String address;
     private String note;
 
+    public MeCardBarcodeDataImpl() {
+    }
+
+    public MeCardBarcodeDataImpl(String name, String company, String phone, String website, String email, String address, String note) {
+        this.name = name;
+        this.company = company;
+        this.phone = phone;
+        this.website = website;
+        this.email = email;
+        this.address = address;
+        this.note = note;
+    }
+
     @Override
     public String getDataString() {
         return String.format("MECARD:N:%s;ORG:%s;TEL:%s;URL:%s;EMAIL:%s;ADR:%s;NOTE:%s;;", name, company, phone, website, email, address, note);

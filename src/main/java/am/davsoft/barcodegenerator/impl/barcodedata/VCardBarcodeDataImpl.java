@@ -23,6 +23,20 @@ public class VCardBarcodeDataImpl implements VCardBarcodeData {
     private String address;
     private String note;
 
+    public VCardBarcodeDataImpl() {
+    }
+
+    public VCardBarcodeDataImpl(ContactName contactName, String company, String title, List<PhoneNumber> phoneNumbers, String website, String email, String address, String note) {
+        this.contactName = contactName;
+        this.company = company;
+        this.title = title;
+        this.phoneNumbers = phoneNumbers;
+        this.website = website;
+        this.email = email;
+        this.address = address;
+        this.note = note;
+    }
+
     @Override
     public String getDataString() {
         StringBuilder builder = new StringBuilder("BEGIN:VCARD").append('\n').append("VERSION:3.0");

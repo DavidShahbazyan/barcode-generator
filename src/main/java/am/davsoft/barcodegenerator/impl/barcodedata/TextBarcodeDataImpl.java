@@ -9,6 +9,13 @@ import am.davsoft.barcodegenerator.api.barcodedata.TextBarcodeData;
 public class TextBarcodeDataImpl implements TextBarcodeData {
     private String text;
 
+    public TextBarcodeDataImpl() {
+    }
+
+    public TextBarcodeDataImpl(String text) {
+        this.text = text;
+    }
+
     @Override
     public String getDataString() {
         return text;

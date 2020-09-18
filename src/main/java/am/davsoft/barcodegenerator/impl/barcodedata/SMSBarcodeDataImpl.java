@@ -10,6 +10,14 @@ public class SMSBarcodeDataImpl implements SMSBarcodeData {
     private String phone;
     private String message;
 
+    public SMSBarcodeDataImpl() {
+    }
+
+    public SMSBarcodeDataImpl(String phone, String message) {
+        this.phone = phone;
+        this.message = message;
+    }
+
     @Override
     public String getDataString() {
         return String.format("smsto:%s:%s", phone, message);

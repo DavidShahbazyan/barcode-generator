@@ -23,12 +23,12 @@ public class BarcodeDataBuilderFactoryTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        factory = new BarcodeDataBuilderFactory();
+//        factory = new BarcodeDataBuilderFactory();
     }
 
     @Test
     public void testEmailBarcodeDataBuilder() {
-        EmailBarcodeData emailBarcodeData = factory.getBarcodeDataBuilder(EmailBarcodeDataBuilder.class)
+        EmailBarcodeData emailBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(EmailBarcodeDataBuilder.class)
                 .withEmail("test@localnet.loc")
                 .build();
         assertEquals(emailBarcodeData.getDataString(), "mailto:test@localnet.loc");
@@ -37,7 +37,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testEventBarcodeDataBuilder_allDay() {
-        EventBarcodeData eventBarcodeData = factory.getBarcodeDataBuilder(EventBarcodeDataBuilder.class)
+        EventBarcodeData eventBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(EventBarcodeDataBuilder.class)
                 .withTitle("TestTitle")
                 .withDescription("TestDescription")
                 .withLocation("TestLocation")
@@ -58,7 +58,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testEventBarcodeDataBuilder_partDay() {
-        EventBarcodeData eventBarcodeData = factory.getBarcodeDataBuilder(EventBarcodeDataBuilder.class)
+        EventBarcodeData eventBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(EventBarcodeDataBuilder.class)
                 .withTitle("TestTitle")
                 .withDescription("TestDescription")
                 .withLocation("TestLocation")
@@ -79,7 +79,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testGoogleLocationBarcodeDataBuilder_LatLong() {
-        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = factory.getBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
+        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
                 .withLatitude("25.0000188")
                 .withLongitude("-71.0087548")
                 .build();
@@ -88,7 +88,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testGoogleLocationBarcodeDataBuilder_LatLongQuery() {
-        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = factory.getBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
+        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
                 .withLatitude("25.0000188")
                 .withLongitude("-71.0087548")
                 .withQuery("Bermuda+Triangle")
@@ -98,7 +98,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testGoogleLocationBarcodeDataBuilder_LatLongLabel() {
-        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = factory.getBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
+        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
                 .withLatitude("25.0000188")
                 .withLongitude("-71.0087548")
                 .withLabel("Bermuda+Triangle")
@@ -108,7 +108,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testGoogleLocationBarcodeDataBuilder_LatLongLabelZoom() {
-        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = factory.getBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
+        GoogleGeoLocationBarcodeData googleGeoLocationBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(GoogleGeoLocationBarcodeDataBuilder.class)
                 .withLatitude("25.0000188")
                 .withLongitude("-71.0087548")
                 .withLabel("Bermuda+Triangle")
@@ -119,7 +119,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testGooglePlayLinkBarcodeDataBuilder() {
-        GooglePlayLinkBarcodeData googlePlayLinkBarcodeData = factory.getBarcodeDataBuilder(GooglePlayLinkBarcodeDataBuilder.class)
+        GooglePlayLinkBarcodeData googlePlayLinkBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(GooglePlayLinkBarcodeDataBuilder.class)
                 .withPackageName("am.davsoft.barcodegenerator")
                 .build();
         assertEquals(googlePlayLinkBarcodeData.getDataString(), "market://details?id=am.davsoft.barcodegenerator");
@@ -127,7 +127,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testGooglePlayLinkBarcodeDataBuilder_invalidPackageName() {
-        GooglePlayLinkBarcodeData googlePlayLinkBarcodeData = factory.getBarcodeDataBuilder(GooglePlayLinkBarcodeDataBuilder.class)
+        GooglePlayLinkBarcodeData googlePlayLinkBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(GooglePlayLinkBarcodeDataBuilder.class)
                 .withPackageName("InvalidPackageName")
                 .build();
         assertEquals(googlePlayLinkBarcodeData.getDataString(), "market://details?id=");
@@ -135,7 +135,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testMeCardBarcodeDataBuilder() {
-        MeCardBarcodeData meCardBarcodeData = factory.getBarcodeDataBuilder(MeCardBarcodeDataBuilder.class)
+        MeCardBarcodeData meCardBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(MeCardBarcodeDataBuilder.class)
                 .withName("TestName")
                 .withCompany("TestCompany")
                 .withPhone("+555555555")
@@ -158,7 +158,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testPhoneNumberBarcodeDataBuilder() {
-        PhoneNumberBarcodeData phoneNumberBarcodeData = factory.getBarcodeDataBuilder(PhoneNumberBarcodeDataBuilder.class)
+        PhoneNumberBarcodeData phoneNumberBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(PhoneNumberBarcodeDataBuilder.class)
                 .withPhone("+555555555")
                 .build();
         assertEquals(phoneNumberBarcodeData.getDataString(), "tel:+555555555");
@@ -166,7 +166,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testSMSBarcodeDataBuilder() {
-        SMSBarcodeData sMSBarcodeData = factory.getBarcodeDataBuilder(SMSBarcodeDataBuilder.class)
+        SMSBarcodeData sMSBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(SMSBarcodeDataBuilder.class)
                 .withPhone("+555555555")
                 .withMessage("TestMessage")
                 .build();
@@ -175,7 +175,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testTextBarcodeDataBuilder() {
-        TextBarcodeData textBarcodeData = factory.getBarcodeDataBuilder(TextBarcodeDataBuilder.class)
+        TextBarcodeData textBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(TextBarcodeDataBuilder.class)
                 .withText("TestText")
                 .build();
         assertEquals(textBarcodeData.getDataString(), "TestText");
@@ -183,7 +183,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testURLBarcodeDataBuilder_withoutProtocol() {
-        URLBarcodeData uRLBarcodeData = factory.getBarcodeDataBuilder(URLBarcodeDataBuilder.class)
+        URLBarcodeData uRLBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(URLBarcodeDataBuilder.class)
                 .withUrl("localnet.loc")
                 .build();
         assertEquals(uRLBarcodeData.getDataString(), "http://localnet.loc");
@@ -191,7 +191,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testURLBarcodeDataBuilder_withProtocol() {
-        URLBarcodeData uRLBarcodeData = factory.getBarcodeDataBuilder(URLBarcodeDataBuilder.class)
+        URLBarcodeData uRLBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(URLBarcodeDataBuilder.class)
                 .withUrl("ftp://localnet.loc")
                 .build();
         assertEquals(uRLBarcodeData.getDataString(), "ftp://localnet.loc");
@@ -199,10 +199,10 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testVCardBarcodeDataBuilder() {
-        ContactNameBuilder contactNameBuilder = factory.getBarcodeDataBuilder(ContactNameBuilder.class);
-        PhoneNumberBuilder phoneNumberBuilder = factory.getBarcodeDataBuilder(PhoneNumberBuilder.class);
+        ContactNameBuilder contactNameBuilder = BarcodeDataBuilderFactory.newBarcodeDataBuilder(ContactNameBuilder.class);
+        PhoneNumberBuilder phoneNumberBuilder = BarcodeDataBuilderFactory.newBarcodeDataBuilder(PhoneNumberBuilder.class);
 
-        VCardBarcodeData vCardBarcodeData = factory.getBarcodeDataBuilder(VCardBarcodeDataBuilder.class)
+        VCardBarcodeData vCardBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(VCardBarcodeDataBuilder.class)
                 .withContactName(contactNameBuilder.withFirstName("TestFirstName").withMiddleName("TestMiddleName").withLastName("TestLastName").build())
                 .withCompany("TestCompany")
                 .withTitle("TestTitle")
@@ -228,7 +228,7 @@ public class BarcodeDataBuilderFactoryTest {
 
     @Test
     public void testWiFiNetworkBarcodeDataBuilder() {
-        WiFiNetworkBarcodeData wiFiNetworkBarcodeData = factory.getBarcodeDataBuilder(WiFiNetworkBarcodeDataBuilder.class)
+        WiFiNetworkBarcodeData wiFiNetworkBarcodeData = BarcodeDataBuilderFactory.newBarcodeDataBuilder(WiFiNetworkBarcodeDataBuilder.class)
                 .withSsid("TestSSID")
                 .withEncryptionType(WiFiEncryptionTypeEnum.WPA_WPA2)
                 .withPass("TestPass")

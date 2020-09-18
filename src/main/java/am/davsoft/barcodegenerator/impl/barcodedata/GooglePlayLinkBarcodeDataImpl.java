@@ -11,6 +11,13 @@ import java.util.regex.Matcher;
 public class GooglePlayLinkBarcodeDataImpl implements GooglePlayLinkBarcodeData {
     private String packageName;
 
+    public GooglePlayLinkBarcodeDataImpl() {
+    }
+
+    public GooglePlayLinkBarcodeDataImpl(String packageName) {
+        this.packageName = packageName;
+    }
+
     @Override
     public String getDataString() {
         Matcher matcher = GOOGLE_PLAY_ID_PATTERN.matcher(packageName);

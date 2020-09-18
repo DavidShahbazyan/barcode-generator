@@ -1,39 +1,43 @@
 package am.davsoft.barcodegenerator.helper;
 
-import am.davsoft.barcodegenerator.api.barcodedata.BarcodeData;
 import am.davsoft.barcodegenerator.builder.SimpleDataBuilder;
 import org.reflections.Reflections;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 /**
  * @author David Shahbasyan
  * @since Aug 01, 2020
  */
 public final class BarcodeDataBuilderFactory {
-    private final Map<Class<? extends SimpleDataBuilder>, SimpleDataBuilder<? extends BarcodeData>> builders = new ConcurrentHashMap<>();
+    private final static Map<Class<? extends SimpleDataBuilder>, Class<? extends SimpleDataBuilder>> builders = new ConcurrentHashMap<>();
 
-    public BarcodeDataBuilderFactory(String... packagesToScan) throws Exception {
-//        List<String> packages = new ArrayList<>();
-//        packages.add("am.davsoft.barcodegenerator.builder");
-//        if (packagesToScan.length>0) {
-//            packages.addAll(Arrays.stream(packagesToScan).collect(Collectors.toList()));
-//        }
-        Reflections reflections = new Reflections(List.of("am.davsoft.barcodegenerator.builder",
-                Arrays.stream(packagesToScan).collect(Collectors.toList())).toArray());
+    static {
+        scanPackages("am.davsoft.barcodegenerator.builder");
+    }
+
+    private BarcodeDataBuilderFactory() {
+    }
+
+    public static void scanPackages(String... packagesToScan) {
+        Reflections reflections = new Reflections(packagesToScan);
         for (Class<? extends SimpleDataBuilder> aClass : reflections.getSubTypesOf(SimpleDataBuilder.class)) {
             if (!aClass.isInterface()) {
-                builders.putIfAbsent(aClass, aClass.getDeclaredConstructor().newInstance());
+                builders.putIfAbsent(aClass, aClass);
             }
         }
     }
 
-    public <T extends SimpleDataBuilder> T getBarcodeDataBuilder(Class<T> type) {
-        return (T) builders.get(type);
+    public static <T extends SimpleDataBuilder> T newBarcodeDataBuilder(Class<T> type) {
+        try {
+            Class<? extends SimpleDataBuilder> implClass = builders.get(type);
+            if (implClass == null) {
+                throw new IllegalArgumentException(String.format("The specified builder type \"%s\" was not found. Probably you forgot to call BarcodeDataBuilderFactory.scanPackages(\"%s\"); to scan your custom builders package before requesting them.", type.getSimpleName(), type.getPackage().getName()));
+            }
+            return type.getDeclaredConstructor().newInstance();
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Exception occurred during a new instance creation.", ex);
+        }
     }
 }

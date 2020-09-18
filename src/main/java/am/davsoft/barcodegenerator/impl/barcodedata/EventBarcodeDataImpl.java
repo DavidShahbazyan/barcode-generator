@@ -20,6 +20,18 @@ public class EventBarcodeDataImpl implements EventBarcodeData {
     private String description;
     private boolean allDayEvent;
 
+    public EventBarcodeDataImpl() {
+    }
+
+    public EventBarcodeDataImpl(String title, LocalDateTime startDate, LocalDateTime endDate, String location, String description, boolean allDayEvent) {
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.location = location;
+        this.description = description;
+        this.allDayEvent = allDayEvent;
+    }
+
     @Override
     public String getDataString() {
         StringBuilder builder = new StringBuilder("BEGIN:VEVENT");

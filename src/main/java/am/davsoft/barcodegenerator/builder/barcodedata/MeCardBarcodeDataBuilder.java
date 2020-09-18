@@ -18,27 +18,8 @@ public class MeCardBarcodeDataBuilder implements SimpleDataBuilder<MeCardBarcode
     private String note;
 
     @Override
-    public MeCardBarcodeData buildData() {
-        MeCardBarcodeData data = new MeCardBarcodeDataImpl();
-        data.setName(this.name);
-        data.setCompany(this.company);
-        data.setPhone(this.phone);
-        data.setWebsite(this.website);
-        data.setEmail(this.email);
-        data.setAddress(this.address);
-        data.setNote(this.note);
-        return data;
-    }
-
-    @Override
-    public void reset() {
-        this.name = null;
-        this.company = null;
-        this.phone = null;
-        this.website = null;
-        this.email = null;
-        this.address = null;
-        this.note = null;
+    public MeCardBarcodeData build() {
+        return new MeCardBarcodeDataImpl(this.name, this.company, this.phone, this.website, this.email, this.address, this.note);
     }
 
     public MeCardBarcodeDataBuilder withName(String name) {
