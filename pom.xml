@@ -15,7 +15,7 @@
 
 <!--        <reflections.version>0.9.12</reflections.version>-->
         <reflections.version>0.9.13-SNAPSHOT</reflections.version>
-        <zxing.version>3.4.0</zxing.version>
+        <zxing.version>3.4.1</zxing.version>
         <jfreesvg.version>3.4</jfreesvg.version>
         <testng.version>7.1.0</testng.version>
     </properties>

@@ -8,7 +8,7 @@ module barcodegenerator {
     requires com.google.zxing;
     requires org.jfree.jfreesvg;
     requires java.desktop;
-    requires org.reflections.common;
+    requires org.reflections;
 
     exports am.davsoft.barcodegenerator;
     exports am.davsoft.barcodegenerator.api;
