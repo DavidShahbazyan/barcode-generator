@@ -19,12 +19,7 @@ public final class BarcodeDataBuilderFactory {
     private final Map<Class<? extends SimpleDataBuilder>, SimpleDataBuilder<? extends BarcodeData>> builders = new ConcurrentHashMap<>();
 
     public BarcodeDataBuilderFactory(String... packagesToScan) throws Exception {
-//        List<String> packages = new ArrayList<>();
-//        packages.add("am.davsoft.barcodegenerator.builder");
-//        if (packagesToScan.length>0) {
-//            packages.addAll(Arrays.stream(packagesToScan).collect(Collectors.toList()));
-//        }
-        Reflections reflections = new Reflections(List.of("am.davsoft.barcodegenerator.builder",
+        Reflections reflections = new Reflections(Arrays.asList("am.davsoft.barcodegenerator.builder",
                 Arrays.stream(packagesToScan).collect(Collectors.toList())).toArray());
         for (Class<? extends SimpleDataBuilder> aClass : reflections.getSubTypesOf(SimpleDataBuilder.class)) {
             if (!aClass.isInterface()) {
