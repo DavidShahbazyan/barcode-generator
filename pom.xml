@@ -14,10 +14,11 @@
         <project.build.java.version>11</project.build.java.version>
 
 <!--        <reflections.version>0.9.12</reflections.version>-->
-        <reflections.version>0.9.13-SNAPSHOT</reflections.version>
-        <zxing.version>3.4.1</zxing.version>
-        <jfreesvg.version>3.4</jfreesvg.version>
-        <testng.version>7.1.0</testng.version>
+<!--        <reflections.version>0.9.13-SNAPSHOT</reflections.version>-->
+        <reflections.version>0.10.2</reflections.version>
+        <zxing.version>3.5.1</zxing.version>
+        <jfreesvg.version>3.4.3</jfreesvg.version>
+        <testng.version>7.7.0</testng.version>
     </properties>
 
     <dependencies>
@@ -57,7 +58,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.10.1</version>
                 <configuration>
                     <source>${project.build.java.version}</source>
                     <target>${project.build.java.version}</target>
